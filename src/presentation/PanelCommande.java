@@ -3,28 +3,33 @@ package presentation;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import donnee.Boisson;
+import donnee.Categorie;
 import donnee.Commande;
-import donnee.Nourriture;
 import donnee.Produit;
+
 
 public class PanelCommande extends JPanel implements MouseListener{
 	
-	private JPanel contenuCom = new JPanel(new GridLayout(10,1));
+	private JPanel contenuCom = new JPanel(new GridLayout(20,1));
 	private JButton envoyer = new JButton("Envoyer");
 	private JButton payer = new JButton("Addition");
 	private Commande commande;
@@ -92,18 +97,68 @@ public class PanelCommande extends JPanel implements MouseListener{
 
 	public void ajoutProduit(final Produit b) {
 		// TODO Auto-generated method stub
-		Box box = Box.createHorizontalBox();
-		JLabel label = new JLabel(b.afficher());
-		label.setName(b.getNom());
-		box.add(label);
+		rafraichirListeCommande();
 		
-		box.add(Box.createRigidArea(new Dimension(15,0)));
-		JButton supp = new JButton("Supprimer");
-		supp.setName(b.getNom());
-		supp.addMouseListener(this);
-		box.add(supp);
-		contenuCom.add(box);
-		calculerTotal();
+	}
+
+	private void rafraichirListeCommande() {
+		// TODO Auto-generated method stub
+		contenuCom.removeAll();
+		ArrayList<Produit> commandes = new ArrayList<Produit>();
+		for(Categorie cat : Categorie.values()){
+			for(Produit p : commande.getListeProduits()){
+				if(p.getCategorie().equals(cat))
+					commandes.add(p);
+			}
+		}
+		Produit tmp = null;
+		boolean flag = true;
+		for(Produit p : commandes){
+			if(tmp==null){
+				tmp = p;
+			}
+			else
+			{
+				if(!p.getCategorie().equals(tmp.getCategorie())){
+					flag = true;
+				}
+				else
+					flag = false;
+			}
+			// On crée l'affichage des produits commandés
+			Box box = Box.createHorizontalBox();
+			if(flag)
+			{
+				JLabel titre =new JLabel(p.getCategorie().toString());
+				titre.setBorder(BorderFactory.createLineBorder(Color.black));
+				titre.setFont(new Font("TimesRoman",Font.BOLD,15));
+				box.add(titre);
+				contenuCom.add(box);
+			}
+			box = Box.createHorizontalBox();
+			JLabel label = new JLabel(p.afficher());
+			label.setName(p.getNom());
+			box.add(label);
+			box.add(Box.createRigidArea(new Dimension(15,0)));
+			if(p.isEnvoye()){
+				JLabel ok = new JLabel("Envoyé");
+				ok.setName(p.getNom());
+				box.add(ok);
+			}
+			else{
+				JButton supp = new JButton("Supprimer");
+				supp.setName(p.getNom());
+				supp.addMouseListener(this);
+				box.add(supp);
+			}
+			calculerTotal();
+			contenuCom.add(box);
+			
+			tmp =p;
+				
+		}
+
+		
 	}
 
 	private void calculerTotal() {
@@ -135,19 +190,38 @@ public class PanelCommande extends JPanel implements MouseListener{
 		}
 		else{
 			contenuCom.removeAll();
+			String res = "";
 			for(Produit p : commande.getListeProduits()){
 				Box box = Box.createHorizontalBox();
 				JLabel label = new JLabel(p.afficher());
 				label.setName(p.getNom());
 				box.add(label);
-				
+				res += p.getNom()+"\n";
 				box.add(Box.createRigidArea(new Dimension(15,0)));
 				JLabel ok = new JLabel("Envoyé");
 				ok.setName(p.getNom());
-				
+				p.setEnvoye(true);
 				box.add(ok);
 				contenuCom.add(box);
+				
+				
 				}
+			PrintWriter ecri ;
+			try
+			{
+				ecri = new PrintWriter(new FileWriter("commande.txt"));
+				ecri.print(res);
+				ecri.flush();
+				ecri.close();
+			}//try
+			catch (NullPointerException a)
+			{
+				System.out.println("Erreur : pointeur null");
+			}
+			catch (IOException a)
+			{
+				System.out.println("Problème d'IO");
+			}
 		
 				
 			

@@ -3,8 +3,8 @@ package donnee;
 import java.util.ArrayList;
 
 public class Boisson extends Produit{
-	public Boisson(String n, double p) {
-		super(n, p);
+	public Boisson(String n, double p , Categorie c) {
+		super(n, p,c );
 		// TODO Auto-generated constructor stub
 	}
 	

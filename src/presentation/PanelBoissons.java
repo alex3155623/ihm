@@ -17,7 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import donnee.Boisson;
-import donnee.CategorieBoisson;
+import donnee.Categorie;
 import donnee.Commande;
 import donnee.ListeBoissons;
 
@@ -31,53 +31,56 @@ public class PanelBoissons extends JPanel implements MouseListener {
 		
 		commande = c;
 		
-		for(CategorieBoisson cat : CategorieBoisson.values()){
-			JPanel panel = new JPanel();
-			panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
-			JLabel titre = new JLabel(cat.toString());
-			titre.setBorder(BorderFactory.createLineBorder(Color.black));
-			titre.setFont(new Font("TimesRoman",Font.BOLD,20));
-			
-			ArrayList<Boisson> listes = new ArrayList<Boisson>();
-			
-			if(cat.equals(CategorieBoisson.Bieres)){
-				listes = listeBoissons.getListeBieres();
-			}
-			else if(cat.equals(CategorieBoisson.Coktails))
+		for(Categorie cat : Categorie.values()){
+			if(cat.isBoisson(cat))
 			{
-				listes = listeBoissons.getListeCoktails();
-			}else if(cat.equals(CategorieBoisson.Sodas))
-			{
-				listes = listeBoissons.getListeSodas();
-			}else{
-				listes = listeBoissons.getListeVins();
+				JPanel panel = new JPanel();
+				panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
+				JLabel titre = new JLabel(cat.toString());
+				titre.setBorder(BorderFactory.createLineBorder(Color.black));
+				titre.setFont(new Font("TimesRoman",Font.BOLD,20));
+				
+				ArrayList<Boisson> listes = new ArrayList<Boisson>();
+				
+				if(cat.equals(Categorie.Bieres)){
+					listes = listeBoissons.getListeBieres();
+				}
+				else if(cat.equals(Categorie.Coktails))
+				{
+					listes = listeBoissons.getListeCoktails();
+				}else if(cat.equals(Categorie.Sodas))
+				{
+					listes = listeBoissons.getListeSodas();
+				}else{
+					listes = listeBoissons.getListeVins();
+				}
+				JPanel panBois = new JPanel(new GridLayout(listes.size()+1,2));
+				panBois.add(titre);
+				panBois.add(new JLabel());
+				for(Boisson b : listes){
+					panBois.add(new JLabel(b.toString()));
+					JLabel ajout= new JLabel("Ajouter");
+					ajout.addMouseListener(this);
+					ajout.setName(b.getNom());
+					panBois.add(ajout);
+					panel.add(panBois);
+				}
+				this.add(panel);
 			}
-			JPanel panBois = new JPanel(new GridLayout(listes.size()+1,2));
-			panBois.add(titre);
-			panBois.add(new JLabel());
-			for(Boisson b : listes){
-				panBois.add(new JLabel(b.toString()));
-				JLabel ajout= new JLabel("Ajouter");
-				ajout.addMouseListener(this);
-				ajout.setName(b.getNom());
-				panBois.add(ajout);
-				panel.add(panBois);
-			}
-			this.add(panel);
 		}
 	}
 	
 	public Boisson rechercheBoisson(String boisson){
-		for(CategorieBoisson cat : CategorieBoisson.values()){
+		for(Categorie cat : Categorie.values()){
 			ArrayList<Boisson> listes = new ArrayList<Boisson>();
 			
-			if(cat.equals(CategorieBoisson.Bieres)){
+			if(cat.equals(Categorie.Bieres)){
 				listes = listeBoissons.getListeBieres();
 			}
-			else if(cat.equals(CategorieBoisson.Coktails))
+			else if(cat.equals(Categorie.Coktails))
 			{
 				listes = listeBoissons.getListeCoktails();
-			}else if(cat.equals(CategorieBoisson.Sodas))
+			}else if(cat.equals(Categorie.Sodas))
 			{
 				listes = listeBoissons.getListeSodas();
 			}else{

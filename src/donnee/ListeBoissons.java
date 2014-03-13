@@ -10,53 +10,53 @@ public class ListeBoissons {
 	private ArrayList<Boisson> listeVins = new ArrayList<Boisson>();
 
 	public ListeBoissons(){
-		Boisson delirium = new Boisson("Delirium", 7.30);
+		Boisson delirium = new Boisson("Delirium", 7.30, Categorie.Bieres);
 		listeBieres.add(delirium);
-		Boisson guiness = new Boisson("Guiness", 4.30);
+		Boisson guiness = new Boisson("Guiness", 4.30, Categorie.Bieres);
 		listeBieres.add(guiness);
-		Boisson frambLindemans = new Boisson("Framboise Lindemans", 4.90);
+		Boisson frambLindemans = new Boisson("Framboise Lindemans", 4.90, Categorie.Bieres);
 		listeBieres.add(frambLindemans);
-		Boisson mille64 = new Boisson("1664", 3.80);
+		Boisson mille64 = new Boisson("1664", 3.80, Categorie.Bieres);
 		listeBieres.add(mille64);
-		Boisson chimay = new Boisson("Chimay Blonde", 4.90);
+		Boisson chimay = new Boisson("Chimay Blonde", 4.90, Categorie.Bieres);
 		listeBieres.add(chimay);
 		
-		Boisson apple = new Boisson("L'apple", 9.00);
+		Boisson apple = new Boisson("L'apple", 9.00, Categorie.Coktails);
 		apple.setIngredients("manzana, vodka, jus de pomme");
 		listeCoktails.add(apple);
-		Boisson tequilaSun = new Boisson("Tequila Sunrise", 9.00);
+		Boisson tequilaSun = new Boisson("Tequila Sunrise", 9.00, Categorie.Coktails);
 		tequilaSun.setIngredients("téquila, orange, grenadine");
 		listeCoktails.add(tequilaSun);
-		Boisson pinaColada = new Boisson("Pina Colada", 9.00);
+		Boisson pinaColada = new Boisson("Pina Colada", 9.00, Categorie.Coktails);
 		pinaColada.setIngredients("rhum blanc, jus ananas et coco ");
 		listeCoktails.add(pinaColada);
-		Boisson greenIsland = new Boisson("Green Island", 9.00);
+		Boisson greenIsland = new Boisson("Green Island", 9.00, Categorie.Coktails);
 		greenIsland.setIngredients("gin, menta verde, perrier");
 		listeCoktails.add(greenIsland);
-		Boisson merico = new Boisson("Merico", 9.00);
+		Boisson merico = new Boisson("Merico", 9.00, Categorie.Coktails);
 		merico.setIngredients("bière blonde, citron vert, tequila");
 		listeCoktails.add(merico);
 		
-		Boisson coca = new Boisson("Coca Cola", 3.80);
+		Boisson coca = new Boisson("Coca Cola", 3.80, Categorie.Sodas);
 		listeSodas.add(coca);
-		Boisson sprite = new Boisson("Sprite", 3.80);
+		Boisson sprite = new Boisson("Sprite", 3.80, Categorie.Sodas);
 		listeSodas.add(sprite);
-		Boisson orange = new Boisson("Minute Maid", 3.80);
+		Boisson orange = new Boisson("Minute Maid", 3.80, Categorie.Sodas);
 		listeSodas.add(orange);
-		Boisson icetea = new Boisson("Ice Tea", 3.80);
+		Boisson icetea = new Boisson("Ice Tea", 3.80, Categorie.Sodas);
 		listeSodas.add(icetea);
-		Boisson fanta = new Boisson("Fanta", 3.80);
+		Boisson fanta = new Boisson("Fanta", 3.80, Categorie.Sodas);
 		listeSodas.add(fanta);
 		
-		Boisson pichet = new Boisson("Pichet Rouge,rosé,blanc", 4.50);
+		Boisson pichet = new Boisson("Pichet Rouge,rosé,blanc", 4.50, Categorie.Vins);
 		listeVins.add(pichet);
-		Boisson rhone = new Boisson("Rhones", 18.0);
+		Boisson rhone = new Boisson("Rhones", 18.0, Categorie.Vins);
 		listeVins.add(rhone);
-		Boisson chablis = new Boisson("Chablis", 23.0);
+		Boisson chablis = new Boisson("Chablis", 23.0, Categorie.Vins);
 		listeVins.add(chablis);
-		Boisson chianti = new Boisson("Chianti", 21.0);
+		Boisson chianti = new Boisson("Chianti", 21.0, Categorie.Vins);
 		listeVins.add(chianti);
-		Boisson riesling = new Boisson("Riesling", 19.0);
+		Boisson riesling = new Boisson("Riesling", 19.0, Categorie.Vins);
 		listeVins.add(riesling);
 		
 	}

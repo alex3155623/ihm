@@ -1,8 +1,8 @@
 package donnee;
 
 public class Nourriture extends Produit {
-	public Nourriture(String n, double p) {
-		super(n, p);
+	public Nourriture(String n, double p, Categorie c) {
+		super(n, p,c );
 		// TODO Auto-generated constructor stub
 	}
 	

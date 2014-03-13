@@ -15,8 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import donnee.Boisson;
-import donnee.CategorieBoisson;
-import donnee.CategorieNourriture;
+import donnee.Categorie;
 import donnee.ListeBoissons;
 import donnee.ListeNourritures;
 import donnee.Nourriture;
@@ -32,48 +31,52 @@ public class PanelNourritures extends JPanel implements MouseListener {
 		
 		commande = c;
 		
-		for(CategorieNourriture cat : CategorieNourriture.values()){
-			JPanel panel = new JPanel();
-			panel.setLayout(new BoxLayout(panel,BoxLayout.PAGE_AXIS));
-			JLabel titre = new JLabel(cat.toString());
-			titre.setBorder(BorderFactory.createLineBorder(Color.black));
-			titre.setFont(new Font("TimesRoman",Font.BOLD+Font.ITALIC,20));
-		
-			ArrayList<Nourriture> listes = new ArrayList<Nourriture>();
+		for(Categorie cat : Categorie.values()){
+			if( cat.isNourriture(cat)){
+				JPanel panel = new JPanel();
+				panel.setLayout(new BoxLayout(panel,BoxLayout.PAGE_AXIS));
+				JLabel titre = new JLabel(cat.toString());
+				titre.setBorder(BorderFactory.createLineBorder(Color.black));
+				titre.setFont(new Font("TimesRoman",Font.BOLD,20));
 			
-			if(cat.equals(CategorieNourriture.Entree)){
-				listes = listeNourritures.getListeEntree();
-			}
-			else if(cat.equals(CategorieNourriture.Plat))
-			{
-				listes = listeNourritures.getListePlat();
-			}else{
-				listes = listeNourritures.getListeDessert();
-			}
-			JPanel panBois = new JPanel(new GridLayout(listes.size()+1,2));
-			panBois.add(titre);
-			panBois.add(new JLabel(""));
-			for(Nourriture b : listes){
+				ArrayList<Nourriture> listes = new ArrayList<Nourriture>();
 				
-				panBois.add(new JLabel(b.toString()));
-				JLabel ajout= new JLabel("Ajouter");
-				ajout.addMouseListener(this);
-				ajout.setName(b.getNom());
-				panBois.add(ajout);
-				panel.add(panBois);
+				if(cat.equals(Categorie.Entree)){
+					listes = listeNourritures.getListeEntree();
+				}
+				else if(cat.equals(Categorie.Plat))
+				{
+					listes = listeNourritures.getListePlat();
+				}else{
+					listes = listeNourritures.getListeDessert();
+				}
+				JPanel panBois = new JPanel(new GridLayout(listes.size()+1,2));
+				panBois.add(titre);
+				panBois.add(new JLabel(""));
+				for(Nourriture b : listes){
+					
+					panBois.add(new JLabel(b.toString()));
+					JLabel ajout= new JLabel("Ajouter");
+					ajout.addMouseListener(this);
+					ajout.setName(b.getNom());
+					panBois.add(ajout);
+					panel.add(panBois);
+				}
+				this.add(panel);
 			}
-			this.add(panel);
+		
 		}
+			
 	}
 	
 	public Nourriture rechercheNourriture(String nourriture){
-		for(CategorieNourriture cat : CategorieNourriture.values()){
+		for(Categorie cat : Categorie.values()){
 			ArrayList<Nourriture> listes = new ArrayList<Nourriture>();
 			
-			if(cat.equals(CategorieNourriture.Entree)){
+			if(cat.equals(Categorie.Entree)){
 				listes = listeNourritures.getListeEntree();
 			}
-			else if(cat.equals(CategorieNourriture.Plat))
+			else if(cat.equals(Categorie.Plat))
 			{
 				listes = listeNourritures.getListePlat();
 			}else{
