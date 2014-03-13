@@ -109,8 +109,9 @@ public class PanelNourritures extends JPanel implements MouseListener {
 			        possibleValues, possibleValues[0]);
 			b.setInformations(selectedValue.toString());
 		}
-		commande.getCommande().ajoutProduitCommande(b);
-		commande.ajoutProduit(b);
+		Nourriture clone = (Nourriture) b.clone();
+		commande.getCommande().ajoutProduitCommande(clone);
+		commande.ajoutProduit(clone);
 		commande.repaint();
 		commande.validate();
 		repaint();

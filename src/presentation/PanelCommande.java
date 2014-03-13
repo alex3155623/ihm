@@ -192,17 +192,9 @@ public class PanelCommande extends JPanel implements MouseListener{
 			contenuCom.removeAll();
 			String res = "";
 			for(Produit p : commande.getListeProduits()){
-				Box box = Box.createHorizontalBox();
-				JLabel label = new JLabel(p.afficher());
-				label.setName(p.getNom());
-				box.add(label);
-				res += p.getNom()+"\n";
-				box.add(Box.createRigidArea(new Dimension(15,0)));
-				JLabel ok = new JLabel("Envoyé");
-				ok.setName(p.getNom());
+				
 				p.setEnvoye(true);
-				box.add(ok);
-				contenuCom.add(box);
+				rafraichirListeCommande();
 				
 				
 				}

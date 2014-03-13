@@ -101,8 +101,9 @@ public class PanelBoissons extends JPanel implements MouseListener {
 		// TODO Auto-generated method stub
 		
 		Boisson b = rechercheBoisson(((JLabel) arg0.getSource()).getName());
-		commande.getCommande().ajoutProduitCommande(b);
-		commande.ajoutProduit(b);
+		Boisson clone = (Boisson) b.clone();
+		commande.getCommande().ajoutProduitCommande(clone);
+		commande.ajoutProduit(clone);
 		commande.repaint();
 		commande.validate();
 		repaint();

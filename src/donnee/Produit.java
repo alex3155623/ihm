@@ -2,7 +2,7 @@ package donnee;
 
 import java.util.Comparator;
 
-public class Produit {
+public class Produit implements Cloneable{
 
 	private Categorie categorie;
 	private String nom;
@@ -72,5 +72,24 @@ public class Produit {
 
 	public void setCategorie(Categorie categorie) {
 		this.categorie = categorie;
+	}
+	
+	public Produit clone() {
+	   Produit produit = null;
+	    try {
+	    	// On récupère l'instance à renvoyer par l'appel de la 
+	      	// méthode super.clone()
+	    	produit = (Produit) super.clone();
+	    } catch(CloneNotSupportedException cnse) {
+	      	// Ne devrait jamais arriver car nous implémentons 
+	      	// l'interface Cloneable
+	      	cnse.printStackTrace(System.err);
+	    }
+	    
+	    // On clone l'attribut de type Patronyme qui n'est pas immuable.
+	    produit.categorie = (Categorie) categorie;
+	    
+	    // on renvoie le clone
+	    return produit;
 	}
 }
