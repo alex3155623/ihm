@@ -9,6 +9,7 @@ import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -63,9 +64,14 @@ public class CarteInteractive extends JPanel{
 		cotegauche.setBackground(Color.white);
 		this.add(cotegauche, BorderLayout.WEST);
 		
-		JPanel cotehaut = new JPanel(new FlowLayout());
-		cotehaut.add(langue);
-		cotehaut.add(appelServ);
+		JPanel cotehaut = new JPanel(new BorderLayout());
+		cotehaut.add(langue, BorderLayout.WEST);
+		JPanel tmp = new JPanel();
+		tmp.add(Box.createRigidArea(new Dimension(5,0)));
+		tmp.add(new JLabel("Table 14"));
+		tmp.add(Box.createRigidArea(new Dimension(5,0)));
+		cotehaut.add(tmp, BorderLayout.CENTER);
+		cotehaut.add(appelServ, BorderLayout.EAST);
 		cotehaut.setBackground(Color.white);
 		this.add(cotehaut, BorderLayout.NORTH);
 		

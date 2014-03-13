@@ -7,6 +7,6 @@ public class Nourriture extends Produit {
 	}
 	
 	public String toString(){
-		return "<html>"+getNom() + ".........." + getPrix()+"<br />"+getIngredients()+"<br /></html>";
+		return "<html><strong>"+getNom() + "</strong>.........." + getPrix()+"<br />"+getIngredients()+"<br /></html>";
 	}
 }

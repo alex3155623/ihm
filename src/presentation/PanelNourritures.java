@@ -34,11 +34,11 @@ public class PanelNourritures extends JPanel implements MouseListener {
 		
 		for(CategorieNourriture cat : CategorieNourriture.values()){
 			JPanel panel = new JPanel();
-			panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
+			panel.setLayout(new BoxLayout(panel,BoxLayout.PAGE_AXIS));
 			JLabel titre = new JLabel(cat.toString());
 			titre.setBorder(BorderFactory.createLineBorder(Color.black));
 			titre.setFont(new Font("TimesRoman",Font.BOLD+Font.ITALIC,20));
-			panel.add(titre);
+		
 			ArrayList<Nourriture> listes = new ArrayList<Nourriture>();
 			
 			if(cat.equals(CategorieNourriture.Entree)){
@@ -50,9 +50,11 @@ public class PanelNourritures extends JPanel implements MouseListener {
 			}else{
 				listes = listeNourritures.getListeDessert();
 			}
-			
+			JPanel panBois = new JPanel(new GridLayout(listes.size()+1,2));
+			panBois.add(titre);
+			panBois.add(new JLabel(""));
 			for(Nourriture b : listes){
-				JPanel panBois = new JPanel(new FlowLayout());
+				
 				panBois.add(new JLabel(b.toString()));
 				JLabel ajout= new JLabel("Ajouter");
 				ajout.addMouseListener(this);

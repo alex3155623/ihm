@@ -36,8 +36,8 @@ public class PanelBoissons extends JPanel implements MouseListener {
 			panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
 			JLabel titre = new JLabel(cat.toString());
 			titre.setBorder(BorderFactory.createLineBorder(Color.black));
-			titre.setFont(new Font("TimesRoman",Font.BOLD+Font.ITALIC,20));
-			panel.add(titre);
+			titre.setFont(new Font("TimesRoman",Font.BOLD,20));
+			
 			ArrayList<Boisson> listes = new ArrayList<Boisson>();
 			
 			if(cat.equals(CategorieBoisson.Bieres)){
@@ -52,9 +52,10 @@ public class PanelBoissons extends JPanel implements MouseListener {
 			}else{
 				listes = listeBoissons.getListeVins();
 			}
-			
+			JPanel panBois = new JPanel(new GridLayout(listes.size()+1,2));
+			panBois.add(titre);
+			panBois.add(new JLabel());
 			for(Boisson b : listes){
-				JPanel panBois = new JPanel(new FlowLayout());
 				panBois.add(new JLabel(b.toString()));
 				JLabel ajout= new JLabel("Ajouter");
 				ajout.addMouseListener(this);
