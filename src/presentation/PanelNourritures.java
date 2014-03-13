@@ -24,10 +24,13 @@ import donnee.Nourriture;
 public class PanelNourritures extends JPanel implements MouseListener {
 	
 	private ListeNourritures listeNourritures = new ListeNourritures(); 
+	private PanelCommande commande;
 	
 	
-	public PanelNourritures(){
+	public PanelNourritures(PanelCommande c){
 		setLayout(new GridLayout(3,2));
+		
+		commande = c;
 		
 		for(CategorieNourriture cat : CategorieNourriture.values()){
 			JPanel panel = new JPanel();
@@ -87,12 +90,7 @@ public class PanelNourritures extends JPanel implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		PanelCommande commande = null;
-		for(Component c :this.getParent().getParent().getComponents()){
-			if(c instanceof PanelCommande){
-				commande = (PanelCommande) c;
-			}
-		}
+		
 		Nourriture b = rechercheNourriture(((JLabel) arg0.getSource()).getName());
 		commande.getCommande().ajoutProduitCommande(b);
 		commande.ajoutProduit(b);

@@ -24,10 +24,12 @@ import donnee.ListeBoissons;
 public class PanelBoissons extends JPanel implements MouseListener {
 	
 	private ListeBoissons listeBoissons = new ListeBoissons(); 
+	private PanelCommande commande;
 	
-	
-	public PanelBoissons(){
+	public PanelBoissons(PanelCommande c){
 		setLayout(new GridLayout(3,2));
+		
+		commande = c;
 		
 		for(CategorieBoisson cat : CategorieBoisson.values()){
 			JPanel panel = new JPanel();
@@ -93,12 +95,7 @@ public class PanelBoissons extends JPanel implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		PanelCommande commande = null;
-		for(Component c :this.getParent().getParent().getComponents()){
-			if(c instanceof PanelCommande){
-				commande = (PanelCommande) c;
-			}
-		}
+		
 		Boisson b = rechercheBoisson(((JLabel) arg0.getSource()).getName());
 		commande.getCommande().ajoutProduitCommande(b);
 		commande.ajoutProduit(b);

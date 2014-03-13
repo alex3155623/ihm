@@ -12,19 +12,22 @@ import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 
 import donnee.Produit;
 
 public class CarteInteractive extends JPanel{
 	
-	private JLabel boissons = new JLabel("Boissons");
-	private JLabel menus = new JLabel("Menus");
-	private JLabel alacarte = new JLabel("A la Carte");
+	private JButton boissons = new JButton("Boissons");
+	private JButton menus = new JButton("Menus");
+	private JButton alacarte = new JButton("A la Carte");
 	private JLabel langue = new JLabel("Francais | Anglais | Espagnol");
 	private JLabel appelServ = new JLabel("Appel Serveur");
 	private PanelCommande recapComm = new PanelCommande();
-	private PanelBoissons paneBoissons = new PanelBoissons();
-	private PanelNourritures paneNourriture = new PanelNourritures();
+	private PanelBoissons paneBoissons = new PanelBoissons(recapComm);
+	private PanelNourritures paneNourriture = new PanelNourritures(recapComm);
+	private JPanel content = new JPanel();
 	
 
 	public CarteInteractive(){
@@ -71,10 +74,11 @@ public class CarteInteractive extends JPanel{
 		
 		paneBoissons.setVisible(false);
 		paneNourriture.setVisible(false);
-		JPanel content = new JPanel();
+		
 		content.add(paneBoissons);
 		content.add(paneNourriture);
-		this.add(content, BorderLayout.CENTER);
+		JScrollPane scrollContent = new JScrollPane(content);
+		this.add(scrollContent, BorderLayout.CENTER);
 		
 		
 		
