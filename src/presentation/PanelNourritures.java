@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import donnee.Boisson;
@@ -97,6 +98,17 @@ public class PanelNourritures extends JPanel implements MouseListener {
 		// TODO Auto-generated method stub
 		
 		Nourriture b = rechercheNourriture(((JLabel) arg0.getSource()).getName());
+		if(b.getNom().equals("Entrecote 300g")){
+			Object[] possibleValues = { "Bleue", "Saignante", "A point" };
+			Object selectedValue = JOptionPane.showInputDialog(null,
+
+			        "Quelle cuisson pour votre viande ?", "Cuisson",
+
+			        JOptionPane.INFORMATION_MESSAGE, null,
+
+			        possibleValues, possibleValues[0]);
+			b.setInformations(selectedValue.toString());
+		}
 		commande.getCommande().ajoutProduitCommande(b);
 		commande.ajoutProduit(b);
 		commande.repaint();

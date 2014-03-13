@@ -29,7 +29,7 @@ import donnee.Produit;
 
 public class PanelCommande extends JPanel implements MouseListener{
 	
-	private JPanel contenuCom = new JPanel(new GridLayout(20,1));
+	private JPanel contenuCom = new JPanel(new GridLayout(15,1));
 	private JButton envoyer = new JButton("Envoyer");
 	private JButton payer = new JButton("Addition");
 	private Commande commande;

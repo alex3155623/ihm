@@ -9,9 +9,10 @@ public class Produit {
 	private double prix;
 	private String ingredients;
 	private boolean envoye;
+	private String informations;
 	
 	public Produit(String n, double p, Categorie c){
-		setNom(n); setPrix(p); ingredients = ""; categorie = c;envoye = false;
+		setNom(n); setPrix(p); ingredients = ""; categorie = c;envoye = false; informations = "";
 	}
 
 	public boolean isEnvoye() {
@@ -53,10 +54,18 @@ public class Produit {
 
 	public String afficher() {
 		// TODO Auto-generated method stub
-		return getNom()+"..."+getPrix();
+		return "<html>"+getNom()+"..."+getPrix()+"<br />"+getInformations()+"</html>";
 	}
 
 	
+	public String getInformations() {
+		return informations;
+	}
+
+	public void setInformations(String informations) {
+		this.informations = informations;
+	}
+
 	public Categorie getCategorie() {
 		return categorie;
 	}
