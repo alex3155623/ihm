@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
@@ -29,11 +30,11 @@ public class CarteInteractive extends JPanel{
 	private JLabel agentFNI = new JLabel(new ImageIcon("images/ServeurFonctionNonImplemente.png"));
 	
 	private JPanel langue = new JPanel();
-	private JLabel appelServ = new JLabel("Appel Serveur");
+	private JLabel appelServ = new JLabel(new ImageIcon("images/AppelServeurCool.png"));
 	private PanelCommande recapComm = new PanelCommande();
 	private PanelBoissons paneBoissons = new PanelBoissons(recapComm);
 	private PanelNourritures paneNourriture = new PanelNourritures(recapComm);
-	private JPanel content = new JPanel();
+	private JPanel content = new JPanel(new BorderLayout());
 	
 
 	public CarteInteractive(){
@@ -41,7 +42,7 @@ public class CarteInteractive extends JPanel{
 		JPanel cotegauche = new JPanel(new GridLayout(3,1));
 		JPanel bois = new JPanel(new BorderLayout());
 		boissons.setName("Boissons");
-		bois.setBackground(Color.red);
+		bois.setBackground(new Color(146,207,238));
 		boissons.addMouseListener(new MouseAdapter() {
 		    public void mouseClicked(MouseEvent e)
 		    {
@@ -55,7 +56,7 @@ public class CarteInteractive extends JPanel{
 		cotegauche.add(bois);
 		JPanel menu = new JPanel(new BorderLayout());
 		menus.setName("menus");
-		menu.setBackground(Color.orange);
+		menu.setBackground(new Color(146,207,238));
 		menus.addMouseListener(new MouseAdapter() {
 		    public void mouseClicked(MouseEvent e)
 		    {
@@ -69,7 +70,7 @@ public class CarteInteractive extends JPanel{
 		cotegauche.add(menu);
 		JPanel carte = new JPanel(new BorderLayout());
 		alacarte.setName("alacarte");
-		carte.setBackground(Color.YELLOW);
+		carte.setBackground(new Color(146,207,238));
 		alacarte.addMouseListener(new MouseAdapter() {
 		    public void mouseClicked(MouseEvent e)
 		    {
@@ -84,20 +85,22 @@ public class CarteInteractive extends JPanel{
 		this.add(cotegauche, BorderLayout.WEST);
 		
 		JPanel cotehaut = new JPanel(new BorderLayout());
-		langue.setBackground(Color.white);
+		langue.setBackground(new Color(146,207,238));
 		langue.add(new JLabel(new ImageIcon("images/drapeauFrance.jpg")));
 		langue.add(new JLabel(new ImageIcon("images/drapeauAnglais.jpg")));
 		langue.add(new JLabel(new ImageIcon("images/drapeauEspagne.jpg")));
 		langue.add(new JLabel(new ImageIcon("images/drapeauItalie.jpg")));
 		cotehaut.add(langue, BorderLayout.WEST);
 		JPanel tmp = new JPanel();
-		tmp.setBackground(Color.white);
+		tmp.setBackground(new Color(146,207,238));
 		tmp.add(Box.createRigidArea(new Dimension(5,0)));
-		tmp.add(new JLabel("Table 14"));
+		JLabel titre =new JLabel("Table 14");
+		titre.setFont(new Font("TimesRoman",Font.BOLD,20));
+		tmp.add(titre);
 		tmp.add(Box.createRigidArea(new Dimension(5,0)));
 		cotehaut.add(tmp, BorderLayout.CENTER);
 		cotehaut.add(appelServ, BorderLayout.EAST);
-		cotehaut.setBackground(Color.white);
+		cotehaut.setBackground(new Color(146,207,238));
 		this.add(cotehaut, BorderLayout.NORTH);
 		
 		
@@ -109,12 +112,21 @@ public class CarteInteractive extends JPanel{
 		paneNourriture.setVisible(false);
 		agentFNI.setVisible(false);
 		agent.setVisible(true);
-		
-		content.add(paneBoissons);
-		content.add(paneNourriture);
-		content.add(agent);
-		content.add(agentFNI);
-		content.setBackground(new Color(242,211,191));
+		JPanel temp = new JPanel();
+		temp.setBackground(new Color(252,243,214));
+		paneBoissons.setPreferredSize(new Dimension(650,800));
+		temp.add(paneBoissons);
+		paneNourriture.setPreferredSize(new Dimension(700,1000));
+		temp.add(paneNourriture);
+		content.add(temp,BorderLayout.CENTER);
+		JPanel temp2 = new JPanel();
+		temp2.setBackground(new Color(252,243,214));
+		temp2.add(Box.createRigidArea(new Dimension(0,1000)));
+		temp2.add(agent);
+		temp2.add(agentFNI);
+		content.add(temp2,BorderLayout.EAST);
+		content.setPreferredSize(new Dimension(800,1000));
+		content.setBackground(new Color(252,243,214));
 		JScrollPane scrollContent = new JScrollPane(content);
 		this.add(scrollContent, BorderLayout.CENTER);
 		revalidate();
@@ -124,6 +136,7 @@ public class CarteInteractive extends JPanel{
 	
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		
 		recapComm.repaint();
 		repaint();
 	}

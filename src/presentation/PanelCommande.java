@@ -48,10 +48,11 @@ public class PanelCommande extends JPanel implements MouseListener{
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		
-		setBackground(Color.white);
+		setBackground(new Color(146,207,238));
 		JLabel titreRecap = new JLabel("Recapitulatif Commande");
 		titreRecap.setBorder(BorderFactory.createLineBorder(Color.black));
 		titreRecap.setPreferredSize(new Dimension(300, 50));
+		titreRecap.setFont(new Font("TimesRoman",Font.BOLD,20));
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 0;
 		c.gridy = 0;
@@ -60,7 +61,7 @@ public class PanelCommande extends JPanel implements MouseListener{
 		contenuCom.setPreferredSize(new Dimension(300, 450));
 		contenuCom.setMinimumSize(new Dimension(300, 450));
 		contenuCom.setVisible(true);
-		contenuCom.setBackground(Color.gray);
+		contenuCom.setBackground(new Color(233,255,248));
 		c.gridx = 0;
 		c.gridy = 1;
 		this.add(contenuCom,c);

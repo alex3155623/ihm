@@ -2,6 +2,7 @@ package presentation;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -29,13 +31,13 @@ public class PanelNourritures extends JPanel implements MouseListener {
 	
 	public PanelNourritures(PanelCommande c){
 		setLayout(new GridLayout(3,2));
-		
+		setMaximumSize(new Dimension(300,300));
 		commande = c;
 		
 		for(Categorie cat : Categorie.values()){
 			if( cat.isNourriture(cat)){
 				JPanel panel = new JPanel();
-				panel.setBackground(new Color(242,211,191));
+				panel.setBackground(new Color(252,243,214));
 				panel.setLayout(new BoxLayout(panel,BoxLayout.PAGE_AXIS));
 				JLabel titre = new JLabel(cat.toString());
 				titre.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -55,11 +57,11 @@ public class PanelNourritures extends JPanel implements MouseListener {
 				JPanel panBois = new JPanel(new GridLayout(listes.size()+1,2));
 				panBois.add(titre);
 				panBois.add(new JLabel(""));
-				panBois.setBackground(new Color(242,211,191));
+				panBois.setBackground(new Color(252,243,214));
 				for(Nourriture b : listes){
 					
 					panBois.add(new JLabel(b.toString()));
-					JLabel ajout= new JLabel("Ajouter");
+					JLabel ajout= new JLabel(new ImageIcon("images/plus.png"));
 					ajout.addMouseListener(this);
 					ajout.setName(b.getNom());
 					panBois.add(ajout);

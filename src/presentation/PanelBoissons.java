@@ -28,19 +28,19 @@ public class PanelBoissons extends JPanel implements MouseListener {
 	private PanelCommande commande;
 	
 	public PanelBoissons(PanelCommande c){
-		setLayout(new GridLayout(4,1));
-		setBackground(new Color(132,211,191));
+		setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
+		setBackground(new Color(252,243,214));
 		commande = c;
 		
 		for(Categorie cat : Categorie.values()){
 			if(cat.isBoisson(cat))
 			{
 				JPanel panel = new JPanel();
-				panel.setBackground(new Color(132,211,191));
+				panel.setBackground(new Color(252,243,214));
 				panel.setLayout(new BoxLayout(panel,BoxLayout.PAGE_AXIS));
 				JLabel titre = new JLabel(cat.toString());
 				titre.setBorder(BorderFactory.createLineBorder(Color.black));
-				titre.setFont(new Font("TimesRoman",Font.BOLD,20));
+				titre.setFont(new Font("TimesRoman",Font.BOLD,15));
 				
 				ArrayList<Boisson> listes = new ArrayList<Boisson>();
 				
@@ -60,11 +60,11 @@ public class PanelBoissons extends JPanel implements MouseListener {
 				
 				panBois.add(titre);
 				panBois.add(new JLabel());
-				panBois.setBackground(new Color(132,211,191));
+				panBois.setBackground(new Color(252,243,214));
 				for(Boisson b : listes){
 					
 					panBois.add(new JLabel(b.toString()));
-					JLabel ajout= new JLabel("Ajouter");
+					JLabel ajout= new JLabel(new ImageIcon("images/plus.png"));
 					ajout.addMouseListener(this);
 					ajout.setName(b.getNom());
 					panBois.add(ajout);
