@@ -21,23 +21,24 @@ public class ListeBoissons {
 		Boisson chimay = new Boisson("Chimay Blonde", 4.90, Categorie.Bieres);
 		listeBieres.add(chimay);
 		
-		Boisson apple = new Boisson("L'apple", 9.00, Categorie.Coktails);
+		Boisson apple = new Boisson("L'apple", 9.00, Categorie.Cocktails);
 		apple.setIngredients("manzana, vodka, jus de pomme");
 		listeCoktails.add(apple);
-		Boisson tequilaSun = new Boisson("Tequila Sunrise", 9.00, Categorie.Coktails);
+		Boisson tequilaSun = new Boisson("Tequila Sunrise", 9.00, Categorie.Cocktails);
 		tequilaSun.setIngredients("téquila, orange, grenadine");
 		listeCoktails.add(tequilaSun);
-		Boisson pinaColada = new Boisson("Pina Colada", 9.00, Categorie.Coktails);
+		Boisson pinaColada = new Boisson("Pina Colada", 9.00, Categorie.Cocktails);
 		pinaColada.setIngredients("rhum blanc, jus ananas et coco ");
 		listeCoktails.add(pinaColada);
-		Boisson greenIsland = new Boisson("Green Island", 9.00, Categorie.Coktails);
+		Boisson greenIsland = new Boisson("Green Island", 9.00, Categorie.Cocktails);
 		greenIsland.setIngredients("gin, menta verde, perrier");
 		listeCoktails.add(greenIsland);
-		Boisson merico = new Boisson("Merico", 9.00, Categorie.Coktails);
+		Boisson merico = new Boisson("Merico", 9.00, Categorie.Cocktails);
 		merico.setIngredients("bière blonde, citron vert, tequila");
 		listeCoktails.add(merico);
 		
 		Boisson coca = new Boisson("Coca Cola", 3.80, Categorie.Sodas);
+		coca.setImage("logoCoca.jpg");
 		listeSodas.add(coca);
 		Boisson sprite = new Boisson("Sprite", 3.80, Categorie.Sodas);
 		listeSodas.add(sprite);

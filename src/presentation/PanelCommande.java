@@ -191,7 +191,7 @@ public class PanelCommande extends JPanel implements MouseListener{
 			contenuCom.removeAll();
 			String res = "";
 			for(Produit p : commande.getListeProduits()){
-				
+				res += p.getNom()+"\n";
 				p.setEnvoye(true);
 				rafraichirListeCommande();
 				

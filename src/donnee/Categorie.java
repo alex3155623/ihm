@@ -1,10 +1,10 @@
 package donnee;
 
 public enum Categorie {
-	Bieres, Coktails, Sodas, Vins, Entree, Plat, Dessert;
+	Bieres, Cocktails, Sodas, Vins, Entree, Plat, Dessert;
 	
 	public boolean isBoisson(Categorie cat){
-		if(cat.equals(Bieres) || cat.equals(Coktails)  || cat.equals(Sodas) || cat.equals(Vins))
+		if(cat.equals(Bieres) || cat.equals(Cocktails)  || cat.equals(Sodas) || cat.equals(Vins))
 			return true;
 		else
 			return false;

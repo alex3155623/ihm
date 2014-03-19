@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -27,15 +28,16 @@ public class PanelBoissons extends JPanel implements MouseListener {
 	private PanelCommande commande;
 	
 	public PanelBoissons(PanelCommande c){
-		setLayout(new GridLayout(3,2));
-		
+		setLayout(new GridLayout(4,1));
+		setBackground(new Color(132,211,191));
 		commande = c;
 		
 		for(Categorie cat : Categorie.values()){
 			if(cat.isBoisson(cat))
 			{
 				JPanel panel = new JPanel();
-				panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
+				panel.setBackground(new Color(132,211,191));
+				panel.setLayout(new BoxLayout(panel,BoxLayout.PAGE_AXIS));
 				JLabel titre = new JLabel(cat.toString());
 				titre.setBorder(BorderFactory.createLineBorder(Color.black));
 				titre.setFont(new Font("TimesRoman",Font.BOLD,20));
@@ -45,7 +47,7 @@ public class PanelBoissons extends JPanel implements MouseListener {
 				if(cat.equals(Categorie.Bieres)){
 					listes = listeBoissons.getListeBieres();
 				}
-				else if(cat.equals(Categorie.Coktails))
+				else if(cat.equals(Categorie.Cocktails))
 				{
 					listes = listeBoissons.getListeCoktails();
 				}else if(cat.equals(Categorie.Sodas))
@@ -55,9 +57,12 @@ public class PanelBoissons extends JPanel implements MouseListener {
 					listes = listeBoissons.getListeVins();
 				}
 				JPanel panBois = new JPanel(new GridLayout(listes.size()+1,2));
+				
 				panBois.add(titre);
 				panBois.add(new JLabel());
+				panBois.setBackground(new Color(132,211,191));
 				for(Boisson b : listes){
+					
 					panBois.add(new JLabel(b.toString()));
 					JLabel ajout= new JLabel("Ajouter");
 					ajout.addMouseListener(this);
@@ -77,7 +82,7 @@ public class PanelBoissons extends JPanel implements MouseListener {
 			if(cat.equals(Categorie.Bieres)){
 				listes = listeBoissons.getListeBieres();
 			}
-			else if(cat.equals(Categorie.Coktails))
+			else if(cat.equals(Categorie.Cocktails))
 			{
 				listes = listeBoissons.getListeCoktails();
 			}else if(cat.equals(Categorie.Sodas))

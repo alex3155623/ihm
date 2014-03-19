@@ -35,6 +35,7 @@ public class PanelNourritures extends JPanel implements MouseListener {
 		for(Categorie cat : Categorie.values()){
 			if( cat.isNourriture(cat)){
 				JPanel panel = new JPanel();
+				panel.setBackground(new Color(242,211,191));
 				panel.setLayout(new BoxLayout(panel,BoxLayout.PAGE_AXIS));
 				JLabel titre = new JLabel(cat.toString());
 				titre.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -54,6 +55,7 @@ public class PanelNourritures extends JPanel implements MouseListener {
 				JPanel panBois = new JPanel(new GridLayout(listes.size()+1,2));
 				panBois.add(titre);
 				panBois.add(new JLabel(""));
+				panBois.setBackground(new Color(242,211,191));
 				for(Nourriture b : listes){
 					
 					panBois.add(new JLabel(b.toString()));

@@ -10,9 +10,10 @@ public class Produit implements Cloneable{
 	private String ingredients;
 	private boolean envoye;
 	private String informations;
+	private String image ;
 	
 	public Produit(String n, double p, Categorie c){
-		setNom(n); setPrix(p); ingredients = ""; categorie = c;envoye = false; informations = "";
+		setNom(n); setPrix(p); ingredients = ""; categorie = c;envoye = false; informations = "";setImage("");
 	}
 
 	public boolean isEnvoye() {
@@ -91,5 +92,13 @@ public class Produit implements Cloneable{
 	    
 	    // on renvoie le clone
 	    return produit;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 }
