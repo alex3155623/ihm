@@ -10,6 +10,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.Box;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -23,7 +24,7 @@ public class CarteInteractive extends JPanel{
 	private JButton boissons = new JButton("Boissons");
 	private JButton menus = new JButton("Menus");
 	private JButton alacarte = new JButton("A la Carte");
-	private JLabel langue = new JLabel("Francais | Anglais | Espagnol");
+	private JPanel langue = new JPanel();
 	private JLabel appelServ = new JLabel("Appel Serveur");
 	private PanelCommande recapComm = new PanelCommande();
 	private PanelBoissons paneBoissons = new PanelBoissons(recapComm);
@@ -65,6 +66,10 @@ public class CarteInteractive extends JPanel{
 		this.add(cotegauche, BorderLayout.WEST);
 		
 		JPanel cotehaut = new JPanel(new BorderLayout());
+		langue.add(new JLabel(new ImageIcon("images/drapeauFrance.jpg")));
+		langue.add(new JLabel(new ImageIcon("images/drapeauAnglais.jpg")));
+		langue.add(new JLabel(new ImageIcon("images/drapeauEspagne.jpg")));
+		langue.add(new JLabel(new ImageIcon("images/drapeauItalie.jpg")));
 		cotehaut.add(langue, BorderLayout.WEST);
 		JPanel tmp = new JPanel();
 		tmp.add(Box.createRigidArea(new Dimension(5,0)));

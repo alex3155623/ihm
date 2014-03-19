@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -141,12 +142,12 @@ public class PanelCommande extends JPanel implements MouseListener{
 			box.add(label);
 			box.add(Box.createRigidArea(new Dimension(15,0)));
 			if(p.isEnvoye()){
-				JLabel ok = new JLabel("Envoyé");
+				JLabel ok = new JLabel(new ImageIcon("images/checkVert.jpg"));
 				ok.setName(p.getNom());
 				box.add(ok);
 			}
 			else{
-				JButton supp = new JButton("Supprimer");
+				JLabel supp = new JLabel(new ImageIcon("images/croixRouge.jpg"));
 				supp.setName(p.getNom());
 				supp.addMouseListener(this);
 				box.add(supp);
@@ -173,14 +174,12 @@ public class PanelCommande extends JPanel implements MouseListener{
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		////////////
-		//Attention à changer si on passe avec une image ! Code très très sale !
-		//
-		/////////////
-		if(((JButton) arg0.getSource()).getText().equals("Supprimer")){
+		
+		if( arg0.getSource() instanceof JLabel && ((JLabel) arg0.getSource()).getIcon() != null && ((JLabel) arg0.getSource()).getIcon().toString().equals("images/croixRouge.jpg")
+				){
 			Produit tmp = null;
 			for(Produit p: commande.getListeProduits()){
-				if( p.getNom().equals(((JButton) arg0.getSource()).getName()))
+				if( p.getNom().equals(((JLabel) arg0.getSource()).getName()))
 					tmp =p;
 			}
 			
