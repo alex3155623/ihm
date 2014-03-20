@@ -10,8 +10,14 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
@@ -23,8 +29,10 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import donnee.Boisson;
 import donnee.Categorie;
 import donnee.Commande;
+import donnee.Nourriture;
 import donnee.Produit;
 
 
@@ -190,31 +198,16 @@ public class PanelCommande extends JPanel implements MouseListener{
 		}
 		else{
 			contenuCom.removeAll();
-			String res = "";
-			for(Produit p : commande.getListeProduits()){
-				res += p.getNom()+"\n";
-				p.setEnvoye(true);
-				rafraichirListeCommande();
-				
-				
-				}
-			PrintWriter ecri ;
-			try
-			{
-				ecri = new PrintWriter(new FileWriter("commande.txt"));
-				ecri.print(res);
-				ecri.flush();
-				ecri.close();
-			}//try
-			catch (NullPointerException a)
-			{
-				System.out.println("Erreur : pointeur null");
-			}
-			catch (IOException a)
-			{
-				System.out.println("Problème d'IO");
-			}
 		
+			for(Produit p : commande.getListeProduits()){
+				if(!p.isEnvoye()){
+					commande.getListeProduitsEnvoyes().add(p);
+					System.out.println(commande.getListeProduitsEnvoyes().size());
+					p.setEnvoye(true);
+				}
+				rafraichirListeCommande();
+							
+			}
 				
 			
 		}

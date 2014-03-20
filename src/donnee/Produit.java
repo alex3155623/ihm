@@ -1,6 +1,6 @@
 package donnee;
 
-import java.util.Comparator;
+import java.io.Serializable;
 
 public class Produit implements Cloneable{
 
